@@ -52,6 +52,4 @@ def generate_chart():
     base64_image = base64.b64encode(buf.read()).decode("utf-8")
 
     return jsonify({"image_base64": base64_image})
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    
