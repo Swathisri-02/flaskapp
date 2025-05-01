@@ -53,5 +53,7 @@ def generate_chart():
     buf.seek(0)
     base64_image = base64.b64encode(buf.read()).decode("utf-8")
 
-    return jsonify({base64_image})
+    return jsonify({
+    "image_url": f"data:image/png;base64,{base64_image}"
+    })
     
