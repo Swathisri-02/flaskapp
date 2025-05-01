@@ -7,13 +7,15 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from flask import Flask, request, jsonify
-import dotenv
 
-dotenv.load_dotenv()
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-openai.api_key = dotenv.get_key(dotenv.find_dotenv(), "OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/generate_chart", methods=["POST"])
 def generate_chart():
@@ -51,5 +53,5 @@ def generate_chart():
     buf.seek(0)
     base64_image = base64.b64encode(buf.read()).decode("utf-8")
 
-    return jsonify({"image_base64": base64_image})
+    return jsonify({base64_image})
     
